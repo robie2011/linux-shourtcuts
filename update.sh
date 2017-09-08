@@ -4,5 +4,4 @@ basename="$(dirname $(readlink -f $script))"
 
 cd $basename
 git pull
-reloadProfile
 cd -
