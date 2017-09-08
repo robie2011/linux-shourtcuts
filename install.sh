@@ -18,11 +18,12 @@ then
 else
     CMD="ln -s $basename/update.sh $UPDATE_LINK"
     $ADDSUDO$CMD
+    chmod +x $UPDATE_LINK
     echo "source $basename/loadAll.sh">>~/.bashrc
 
     CRONBKP=/tmp/crontab_backup
     crontab -l > $CRONBKP
-    echo "@hourly /usr/bin/update-linuxshortcuts" >> $CRONBKP
+    echo "@hourly $UPDATE_LINK" >> $CRONBKP
     crontab $CRONBKP
     echo "DONE! $(date)"
 fi
